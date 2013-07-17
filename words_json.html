@@ -1,0 +1,7 @@
+{ "words" : {
+{% for word in words %}
+ "{{ word.word }}" : {{ word.count }} ,
+{% endfor %}
+ "validation" : 0
+ }
+}

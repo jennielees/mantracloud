@@ -1,0 +1,55 @@
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+    <head>
+        <title>MantraCloud</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <script src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+       google.load("jquery", "1.3.1");
+    </script>
+    <style>
+    v\:* { behavior: url(#default#VML); position: absolute}.
+    </style>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/jquery.color.js"></script>
+    <script type="text/javascript" src="js/tagcloud.js"></script>
+
+    
+  </head>
+
+  <body>
+    <div id="main">
+    <div id="logo"><img src="/images/mantracloud_cloud4.png"></div>
+    <h1>It's like buzzword bingo for your startup.</h1>
+    <div id="intro">
+        We've processed every company in <a href="http://www.crunchbase.com">CrunchBase</a> and collated the most common words
+        used in their short descriptions, or mantras. What words should you be using to get funded? Take a look.
+    </div>
+  
+  <div id="tagcloud" style="position: relative; align: center; width: 600px; height: 400px;"></div> 
+  
+      <script>
+    var tagcloud = new TagCloud(document.getElementById('tagcloud'),'random',[{r:255,g:197,b:145},{r:255,g:213,b:122},{r:243,g:133,b:99},{r:251,g:158,b:126},{r:254,g:173,b:120}]
+, [{r:172,g:207,b:175}],'/w/');
+      {% for word in words %}
+    tagcloud.addNode(new Node('{{ word.word }}',{{ word.count }}));
+     {% endfor %}
+
+    tagcloud.draw();
+    </script>
+      
+   <div id="taglist">
+    
+    {% for word in words %}
+    
+      <span style="font-size: {{word.fontsize}}pt">{{ word.word }}</span>
+    
+    {% endfor %}
+   </div>
+   
+   <div id="footer">
+    <a href="http://mantra.benchmark7.com">MantraCloud</a> is a toy made by <a href="http://affectlabs.com">Affect Labs</a> running on <a href="http://appengine.google.com">Google App Engine.</a> Hooray!
+   </div>
+  </div>
+  
+  </body>
+</html>
